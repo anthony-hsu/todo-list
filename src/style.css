@@ -1,0 +1,55 @@
+body {
+    font-family: 'Courier New', Courier, monospace;
+}
+
+a {
+    text-decoration: none;
+}
+
+ul {
+    background-color: teal;
+    list-style-type: none;
+    overflow: hidden;
+    margin: 0;
+    padding: 0;
+}
+
+li {
+    float: left;
+}
+
+li:hover {
+    background-color: blue;
+}
+
+li a, .dropbtn {
+    display: inline-block;
+    color: white;
+    padding: 14px 16px;
+    text-align: center;
+}
+
+.dropdown {
+    display: inline-block;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: grey;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+.dropdown-content a {
+    display: block;
+    text-align: left;
+}
+
+#container {
+    padding: 5rem 3rem;
+    text-align: center;
+    align-content: center;
+}
