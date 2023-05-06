@@ -6,8 +6,8 @@ class Project {
         this.todoItems = [];
     }
 
-    createTodoItem = (title, description, date, priority) => {
-        this.todoItems.push(new TodoItem(title, description, date, priority));
+    addTodoItem = (todoItem) => {
+        this.todoItems.push(todoItem);
     };
 }
 
