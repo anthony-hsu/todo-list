@@ -5,6 +5,9 @@
         <header>
             <nav>
                 <ul class="menus">
+                    <li>
+                        <a href="#" id="menu-home">TODO LIST</a>
+                    </li>
                     <li id="menu-projects" class="dropdown">
                         <a href="#" class="dropbtn">Projects</a>
                         <div id="dropdown-project-list" class="dropdown-content"></div>
@@ -12,14 +15,21 @@
                     <li id="menu-new" class="dropdown">
                         <a href="#" class="dropbtn">New</a>
                         <div class="dropdown-content">
-                            <a href="#" id="btn-project">New Project</a>
-                            <a href="#" id="btn-todoItem">New Todo Item</a>
+                            <a href="#" id="menu-new-project">New Project</a>
+                            <a href="#" id="menu-new-todoItem">New Todo Item</a>
                         </div>
                     </li>
                 </ul>
             </nav>
         </header>
         <div id="container"></div>
+        <div id="overlay" class="hidden"></div>
+        <div id="new-project-container" class="modal hidden">
+            <h3>New Project</h3>
+            <label for="projectTitle">Title: </label>
+            <input type="text" name="projectTitle">
+            <button>Submit</button>
+        </div>
     </body>
     <script src="main.js"></script>
 </html>

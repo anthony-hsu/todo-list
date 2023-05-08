@@ -18,15 +18,20 @@ li {
     float: left;
 }
 
-li:hover {
+.dropdown:hover {
     background-color: blue;
+    cursor: pointer;
 }
 
 li a, .dropbtn {
     display: inline-block;
     color: white;
-    padding: 14px 16px;
+    padding: 14px 20px;
     text-align: center;
+}
+
+#menu-home {
+    font-weight: bold;
 }
 
 .dropdown {
@@ -48,8 +53,49 @@ li a, .dropbtn {
     text-align: left;
 }
 
+.dropdown-content a:hover {
+    background-color: lightblue;
+    cursor: pointer;
+}
+
 #container {
     padding: 5rem 3rem;
     text-align: center;
     align-content: center;
+}
+
+.todoItem {
+    box-shadow: 2px 2px 2px 0px grey;
+    border-width: 1px;
+    border-color: black;
+    border-style: solid;
+    background-color: beige;
+}
+
+.modal {
+    position: absolute;
+    background-color: white;
+    padding: 20px;
+    text-align: center;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    border-width: 1px;
+    border-color: black;
+    border-style: solid;
+    box-shadow: 2px 2px 2px 0 gray;
+}
+
+#overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background-color: black;
+    opacity: 70%;
+}
+
+.hidden {
+    display: none;
 }
