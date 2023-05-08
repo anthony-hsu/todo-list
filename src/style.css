@@ -99,3 +99,7 @@ li a, .dropbtn {
 .hidden {
     display: none;
 }
+
+.invalid {
+    background-color: rgb(244, 150, 150);
+}

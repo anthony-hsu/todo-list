@@ -6,7 +6,7 @@ const loadProject = (project) => {
     projectTitle.innerHTML = project.title;
     divContainer.appendChild(projectTitle);
 
-    // append div of todoList "cards" -- divContainer.appendChild(divTodoList);
+    // append div of todoList "cards"
     (project.todoItems).forEach(todoItem => {
         const divTodoList = document.createElement('div');
         const todoTitle = document.createElement('h3');
