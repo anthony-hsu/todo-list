@@ -1,5 +1,6 @@
 <!DOCTYPE html>
     <head>
+        <title>Todo List</title>
     </head>
     <body>
         <header>
@@ -16,19 +17,44 @@
                         <a href="#" class="dropbtn">New</a>
                         <div class="dropdown-content">
                             <a href="#" id="menu-new-project">New Project</a>
-                            <a href="#" id="menu-new-todoItem">New Todo Item</a>
+                            <a href="#" id="menu-new-todo-item">New Todo Item</a>
                         </div>
                     </li>
                 </ul>
             </nav>
         </header>
-        <div id="container"></div>
-        <div id="overlay" class="hidden"></div>
-        <div id="new-project-container" class="modal hidden">
-            <h3>New Project</h3>
-            <label for="projectTitle">Title: </label>
-            <input type="text" name="projectTitle" id="input-new-project">
-            <button id="btn-new-project">Submit</button>
+        <div id="container">
+            <div id="container-header"></div>
+            <div id="container-body"></div>
+            <button id="btn-new-project-todo">New Todo Item</button>
+        </div>
+        <div id="modal-container">
+            <div id="overlay" class="hidden"></div>
+            <div id="new-project-container" class="modal hidden">
+                <h3>New Project</h3>
+                <br>
+                <label for="projectTitle">Title: </label>
+                <input type="text" name="projectTitle" id="input-new-project">
+                <br><br>
+                <button id="btn-new-project">Submit</button>
+            </div>
+            <div id="new-todo-item-container" class="modal hidden">
+                <h3>New Todo Item</h3>
+                <br>
+                <label for="newTodoTitle">Title: </label>
+                <input type="text" name="newTodoTitle" id="input-new-todo-title">
+                <br><br>
+                <label for="newTodoDescription">Description: </label>
+                <input type="text" name="newTodoDescription" id="input-new-todo-description">
+                <br><br>
+                <label for="newTodoDueDate">Due Date: </label>
+                <input type="datetime" name="newTodoDueDate" id="input-new-todo-due-date">
+                <br><br>
+                <label for="newTodoPriority">Priority: </label>
+                <input type="number" name="newTodoPriority" id="input-new-todo-priority">
+                <br><br>
+                <button id="btn-new-todo">Submit</button>
+            </div>
         </div>
     </body>
     <script src="main.js"></script>

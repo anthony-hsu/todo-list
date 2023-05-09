@@ -31,6 +31,7 @@ const newProjectMenu = document.getElementById('menu-new-project');
 newProjectMenu.addEventListener('click', () => {
     newProjectContainer.classList.toggle('hidden');
     overlay.classList.toggle('hidden');
+    newProjectInput.focus();
 });
 // New Project (Submit)
 const newProjectButton = document.getElementById('btn-new-project');
@@ -61,8 +62,34 @@ newProjectInput.addEventListener('keydown', () => {
     }
 });
 // New Todo Item (Menu)
+const newTodoMenu = document.getElementById('menu-new-todo-item');
+const newTodoInput = document.getElementById('input-new-todo-title')
+const newTodoContainer = document.getElementById('new-todo-item-container');
+newTodoMenu.addEventListener('click', () => {
+    newTodoContainer.classList.toggle('hidden');
+    overlay.classList.toggle('hidden');
+    newTodoInput.focus();
+});
 // New Todo Item (Submit) 
+const newTodoButton = document.getElementById('btn-new-todo');
+newTodoButton.addEventListener('click', () => {
+    console.log('testing success!');
+});
+// Escape Modals
+document.onkeydown = (e) => {
+    if (e.key == 'Escape') {
+        if (!overlay.classList.contains('hidden')) {
+            overlay.classList.toggle('hidden');
+        }
+        if (!newProjectContainer.classList.contains('hidden')) {
+            newProjectContainer.classList.toggle('hidden');
+        }
+        if (!newTodoContainer.classList.contains('hidden')) {
+            newTodoContainer.classList.toggle('hidden');
+        }
+    }
+};
 
 // Load
 loadProjectMenu(projectList);
-loadProject(a);
+var currentProject = loadProject(a);

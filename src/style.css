@@ -60,6 +60,9 @@ li a, .dropbtn {
 
 #container {
     padding: 5rem 3rem;
+}
+
+#container-body {
     text-align: center;
     align-content: center;
 }
@@ -75,7 +78,7 @@ li a, .dropbtn {
 .modal {
     position: absolute;
     background-color: white;
-    padding: 20px;
+    padding: 30px;
     text-align: center;
     left: 50%;
     top: 50%;
@@ -83,7 +86,7 @@ li a, .dropbtn {
     border-width: 1px;
     border-color: black;
     border-style: solid;
-    box-shadow: 2px 2px 2px 0 gray;
+    border-radius: 10px;
 }
 
 #overlay {

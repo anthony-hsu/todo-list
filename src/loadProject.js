@@ -1,10 +1,12 @@
 const loadProject = (project) => {
-    const divContainer = document.getElementById('container');
-    divContainer.replaceChildren();
+    const divHeader = document.getElementById('container-header');
+    const divBody = document.getElementById('container-body');
+    divHeader.replaceChildren();
+    divBody.replaceChildren();
 
     const projectTitle = document.createElement('h1');
     projectTitle.innerHTML = project.title;
-    divContainer.appendChild(projectTitle);
+    divHeader.appendChild(projectTitle);
 
     // append div of todoList "cards"
     (project.todoItems).forEach(todoItem => {
@@ -17,19 +19,22 @@ const loadProject = (project) => {
         // Title
         todoTitle.innerHTML = todoItem.title;
         divTodoList.appendChild(todoTitle);
+
         // Description
         todoDescription.innerHTML = `Description: ${todoItem.description}`;
         divTodoList.appendChild(todoDescription);
+
         // DueDate
         todoDueDate.innerHTML = `Due Date: ${todoItem.dueDate}`;
         divTodoList.appendChild(todoDueDate);
+        
         // Priority
         todoPriority.innerHTML = `Priority: ${todoItem.priority}`;
         divTodoList.appendChild(todoPriority);
 
         divTodoList.classList.add("todoItem");
-        divContainer.appendChild(divTodoList);
-        divContainer.appendChild(document.createElement("br"));
+        divBody.appendChild(divTodoList);
+        divBody.appendChild(document.createElement("br"));
     });
 }
 
