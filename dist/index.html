@@ -9,10 +9,6 @@
                     <li>
                         <a href="#" id="menu-home">TODO LIST</a>
                     </li>
-                    <li id="menu-projects" class="dropdown">
-                        <a href="#" class="dropbtn">Projects</a>
-                        <div id="dropdown-project-list" class="dropdown-content"></div>
-                    </li>
                     <li id="menu-new" class="dropdown">
                         <a href="#" class="dropbtn">New</a>
                         <div class="dropdown-content">
@@ -20,13 +16,17 @@
                             <a href="#" id="menu-new-todo-item">New Todo Item</a>
                         </div>
                     </li>
+                    <li id="menu-projects" class="dropdown">
+                        <a href="#" class="dropbtn">Projects</a>
+                        <div id="dropdown-project-list" class="dropdown-content"></div>
+                    </li>
                 </ul>
             </nav>
         </header>
         <div id="container">
             <div id="container-header"></div>
             <div id="container-body"></div>
-            <button id="btn-new-project-todo">New Todo Item</button>
+            <button id="btn-new-project-todo">+</button>
         </div>
         <div id="modal-container">
             <div id="overlay" class="hidden"></div>
@@ -41,6 +41,9 @@
             <div id="new-todo-item-container" class="modal hidden">
                 <h3>New Todo Item</h3>
                 <br>
+                <label for="newTodoProject">Project: </label>
+                <select name="newTodoProject" id="select-new-todo-project"></select>
+                <br><br>
                 <label for="newTodoTitle">Title: </label>
                 <input type="text" name="newTodoTitle" id="input-new-todo-title">
                 <br><br>

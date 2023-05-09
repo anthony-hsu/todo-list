@@ -2,12 +2,10 @@ import './style.css';
 import Project from './project';
 import TodoItem from './todoItem';
 import loadProject from './loadProject';
-import loadProjectMenu from './loadProjectMenu';
 
 const projectList = [];
 
 // Create a new project
-// TODO: When new project is created, add an event listener to it, which calls "loadProject()"
 const a = new Project("Project 1");
 const b = new Project("Project 2");
 projectList.push(a);
@@ -23,6 +21,8 @@ const todo4 = new TodoItem("Sleep", "Get some sleep", "5/5/2023", 5);
 b.addTodoItem(todo3);
 b.addTodoItem(todo4);
 
+var currentProject = projectList[0];
+
 // **** Add Event Listeners ****
 const overlay = document.getElementById('overlay');
 // New Project (Menu)
@@ -36,44 +36,42 @@ newProjectMenu.addEventListener('click', () => {
 // New Project (Submit)
 const newProjectButton = document.getElementById('btn-new-project');
 const newProjectInput = document.getElementById('input-new-project');
-const validProjectInputField = (input) => {
-    if (input.length > 0) {
-        return true;
-    }
-}
 newProjectButton.addEventListener('click', () => {
-    if (validProjectInputField(newProjectInput.value)) {
-        projectList.push(new Project(newProjectInput.value));
-        newProjectInput.value = "";
-        newProjectContainer.classList.toggle('hidden');
-        overlay.classList.toggle('hidden');
-        loadProjectMenu(projectList);
-    } else {
-        if (!newProjectInput.classList.contains("invalid")) {
-            newProjectInput.classList.toggle("invalid");
-        }
-    }
-});
-newProjectInput.addEventListener('keydown', () => {
-    if (newProjectInput.value.length > 0) {
-        if (newProjectInput.classList.contains("invalid")) {
-            newProjectInput.classList.toggle("invalid");
-        }
-    }
+    // Hide modals
+    newProjectContainer.classList.toggle('hidden');
+    overlay.classList.toggle('hidden');
+    // Add new project
+    projectList.push(new Project(newProjectInput.value));
+    // Clear Title field
+    newProjectInput.value = "";
+    // Load new project into project menu
+    loadProjectMenu();
+    // Load new project into New Todo Modal dropdown
+    loadNewTodoProjectDropdown();
 });
 // New Todo Item (Menu)
 const newTodoMenu = document.getElementById('menu-new-todo-item');
-const newTodoInput = document.getElementById('input-new-todo-title')
+const newTodoInputTitle = document.getElementById('input-new-todo-title');
+const newTodoInputDescription = document.getElementById('input-new-todo-description');
+const newTodoInputDueDate = document.getElementById('input-new-todo-due-date');
+const newTodoInputPriority = document.getElementById('input-new-todo-priority');
+const newTodoSelectProject = document.getElementById('select-new-todo-project');
 const newTodoContainer = document.getElementById('new-todo-item-container');
 newTodoMenu.addEventListener('click', () => {
     newTodoContainer.classList.toggle('hidden');
     overlay.classList.toggle('hidden');
-    newTodoInput.focus();
+    newTodoInputTitle.focus();
 });
 // New Todo Item (Submit) 
 const newTodoButton = document.getElementById('btn-new-todo');
 newTodoButton.addEventListener('click', () => {
-    console.log('testing success!');
+    console.log(newTodoInputTitle.value);
+    console.log(newTodoInputDescription.value);
+    console.log(newTodoInputDueDate.value);
+    console.log(newTodoInputPriority.value);
+    const newTodoItem = new TodoItem(newTodoInputTitle.value, newTodoInputDescription.value, newTodoInputDueDate.value, newTodoInputPriority.value);
+    projectList[newTodoSelectProject.value].addTodoItem(newTodoItem);
+    loadProject(currentProject);
 });
 // Escape Modals
 document.onkeydown = (e) => {
@@ -88,8 +86,34 @@ document.onkeydown = (e) => {
             newTodoContainer.classList.toggle('hidden');
         }
     }
-};
+}
+
+const loadProjectMenu = () => {
+    const projectDropdown = document.getElementById('dropdown-project-list');
+    projectDropdown.replaceChildren();
+    projectList.forEach(project => {
+        const item = document.createElement('a');
+        item.href = "#";
+        item.innerHTML = project.title;
+        item.addEventListener('click', () => {
+            loadProject(project);
+            currentProject = project;
+        });
+        projectDropdown.appendChild(item);
+    });
+}
+
+const loadNewTodoProjectDropdown = () => {
+    newTodoSelectProject.replaceChildren();
+    for (let i = 0; i < projectList.length; i++) {
+        const newTodoOption = document.createElement('option');
+        newTodoOption.innerHTML = projectList[i].title;
+        newTodoOption.value = i;
+        newTodoSelectProject.appendChild(newTodoOption);
+    }
+}
 
 // Load
-loadProjectMenu(projectList);
-var currentProject = loadProject(a);
+loadProjectMenu();
+loadProject(a);
+loadNewTodoProjectDropdown();
