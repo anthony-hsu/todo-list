@@ -1,4 +1,5 @@
-const loadProject = (project) => {
+const loadProject = (currentProject) => {
+    const project = currentProject[1];
     const divHeader = document.getElementById('container-header');
     const divBody = document.getElementById('container-body');
     divHeader.replaceChildren();

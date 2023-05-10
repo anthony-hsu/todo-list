@@ -21,7 +21,7 @@ const todo4 = new TodoItem("Sleep", "Get some sleep", "5/5/2023", 5);
 b.addTodoItem(todo3);
 b.addTodoItem(todo4);
 
-var currentProject = projectList[0];
+var currentProject = [0, projectList[0]];
 
 // **** Add Event Listeners ****
 const overlay = document.getElementById('overlay');
@@ -47,7 +47,7 @@ newProjectButton.addEventListener('click', () => {
     // Load new project into project menu
     loadProjectMenu();
     // Load new project into New Todo Modal dropdown
-    loadNewTodoProjectDropdown();
+    loadNewTodoProjectDropdown(false);
 });
 // New Todo Item (Menu)
 const newTodoMenu = document.getElementById('menu-new-todo-item');
@@ -62,13 +62,17 @@ newTodoMenu.addEventListener('click', () => {
     overlay.classList.toggle('hidden');
     newTodoInputTitle.focus();
 });
+// New Todo Item (+ Button)
+const newTodoCurrentProjectButton = document.getElementById('btn-new-todo-current-project');
+newTodoCurrentProjectButton.addEventListener('click', () => {
+    loadNewTodoProjectDropdown(true);
+    newTodoContainer.classList.toggle('hidden');
+    overlay.classList.toggle('hidden');
+    newTodoInputTitle.focus();
+});
 // New Todo Item (Submit) 
 const newTodoButton = document.getElementById('btn-new-todo');
 newTodoButton.addEventListener('click', () => {
-    console.log(newTodoInputTitle.value);
-    console.log(newTodoInputDescription.value);
-    console.log(newTodoInputDueDate.value);
-    console.log(newTodoInputPriority.value);
     const newTodoItem = new TodoItem(newTodoInputTitle.value, newTodoInputDescription.value, newTodoInputDueDate.value, newTodoInputPriority.value);
     projectList[newTodoSelectProject.value].addTodoItem(newTodoItem);
     loadProject(currentProject);
@@ -91,29 +95,39 @@ document.onkeydown = (e) => {
 const loadProjectMenu = () => {
     const projectDropdown = document.getElementById('dropdown-project-list');
     projectDropdown.replaceChildren();
-    projectList.forEach(project => {
+    
+    for (let i = 0; i < projectList.length; i++) {
         const item = document.createElement('a');
         item.href = "#";
-        item.innerHTML = project.title;
+        item.innerHTML = projectList[i].title;
         item.addEventListener('click', () => {
-            loadProject(project);
-            currentProject = project;
+            currentProject = [i, projectList[i]];
+            loadProject(currentProject);
         });
         projectDropdown.appendChild(item);
-    });
+
+    };
 }
 
-const loadNewTodoProjectDropdown = () => {
+const loadNewTodoProjectDropdown = (fromCurrent) => {
     newTodoSelectProject.replaceChildren();
-    for (let i = 0; i < projectList.length; i++) {
-        const newTodoOption = document.createElement('option');
-        newTodoOption.innerHTML = projectList[i].title;
-        newTodoOption.value = i;
-        newTodoSelectProject.appendChild(newTodoOption);
+    if (fromCurrent) {
+        const currentOption = document.createElement('option');
+        currentOption.innerHTML = currentProject[1].title;
+        currentOption.value = currentProject[0];
+        newTodoSelectProject.appendChild(currentOption);
+        newTodoSelectProject.disabled = true;
+    } else {
+        for (let i = 0; i < projectList.length; i++) {
+            const newTodoOption = document.createElement('option');
+            newTodoOption.innerHTML = projectList[i].title;
+            newTodoOption.value = i;
+            newTodoSelectProject.appendChild(newTodoOption);
+        }
     }
 }
 
 // Load
 loadProjectMenu();
-loadProject(a);
-loadNewTodoProjectDropdown();
+loadProject(currentProject);
+loadNewTodoProjectDropdown(false);
