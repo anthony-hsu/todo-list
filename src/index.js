@@ -60,6 +60,7 @@ const newTodoContainer = document.getElementById('new-todo-item-container');
 newTodoMenu.addEventListener('click', () => {
     newTodoContainer.classList.toggle('hidden');
     overlay.classList.toggle('hidden');
+    loadNewTodoProjectDropdown(false);
     newTodoInputTitle.focus();
 });
 // New Todo Item (+ Button)
@@ -124,6 +125,7 @@ const loadNewTodoProjectDropdown = (fromCurrent) => {
             newTodoOption.value = i;
             newTodoSelectProject.appendChild(newTodoOption);
         }
+        newTodoSelectProject.disabled = false;
     }
 }
 
